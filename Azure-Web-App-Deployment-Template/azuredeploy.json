@@ -24,7 +24,31 @@
         "P4"
       ]
     },
-    "WebAppNameName": {
+    "AppServicePlanLocation": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "allowedValues": [
+        "[resourceGroup().location]",
+        "australiaeast",
+        "australiasoutheast",
+        "brazilsouth",
+        "centralus",
+        "eastasia",
+        "eastus",
+        "eastus2",
+        "japaneast",
+        "japanwest",
+        "northcentralus",
+        "northeurope",
+        "southcentralus",
+        "southeastasia",
+        "westcentralus",
+        "westeurope",
+        "westus",
+        "westus2"
+      ]
+    },
+    "WebAppName": {
       "type": "array",
       "defaultValue": [
         "WebAppName1",
@@ -38,7 +62,7 @@
     {
       "name": "[parameters('AppServicePlanNameName')]",
       "type": "Microsoft.Web/serverfarms",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('AppServicePlanLocation')]",
       "apiVersion": "2015-08-01",
       "sku": {
         "name": "[parameters('AppServicePlanNameSkuName')]"
@@ -53,13 +77,13 @@
       }
     },
     {
-      "name": "[parameters('WebAppNameName')[copyIndex('WebAppCopy')]]",
+      "name": "[parameters('WebAppName')[copyIndex('WebAppCopy')]]",
       "type": "Microsoft.Web/sites",
       "location": "[resourceGroup().location]",
       "apiVersion": "2015-08-01",
       "copy": {
         "name": "WebAppCopy",
-        "count": "[length(parameters('WebAppNameName'))]"
+        "count": "[length(parameters('WebAppName'))]"
       },
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', parameters('AppServicePlanNameName'))]"
@@ -69,7 +93,7 @@
         "displayName": "WebAppName"
       },
       "properties": {
-        "name": "[parameters('WebAppNameName')[copyIndex('WebAppCopy')]]",
+        "name": "[parameters('WebAppName')[copyIndex('WebAppCopy')]]",
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('AppServicePlanNameName'))]"
       }
     }
