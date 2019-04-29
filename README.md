@@ -5,10 +5,10 @@ This Azure Resource Management solution allows you to deploy an Azure App Servic
 1. Clone repository to workstation/server
 2. Open project in Microsoft Visual Studio 2017
 3. Create a new deployment to Microsoft Azure
-  3.1 Right click Azure-Web-App-Deployment-Template solution in the Solution Explorer
-  3.2 Select Deploy
-  3.3 Select New
-  3.4 Enter Microsoft Azure Credentials for the target Subscription
+  * 3.1 Right click Azure-Web-App-Deployment-Template solution in the Solution Explorer
+  * 3.2 Select Deploy
+  * 3.3 Select New
+  * 3.4 Enter Microsoft Azure Credentials for the target Subscription
 4. Enter the parameters to define your App Service Plan and App Services (**figure A**):
   * __AppServicePlanName__: *App Service Plan Name*
   * __AppServicePlanSku__: *Defines the resource allocation and cost*
