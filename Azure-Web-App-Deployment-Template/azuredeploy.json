@@ -2,11 +2,11 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "AppServicePlanNameName": {
+    "AppServicePlanName": {
       "type": "string",
       "minLength": 1
     },
-    "AppServicePlanNameSkuName": {
+    "AppServicePlanNameSku": {
       "type": "string",
       "defaultValue": "F1",
       "allowedValues": [
@@ -51,8 +51,9 @@
     "WebAppName": {
       "type": "array",
       "defaultValue": [
-        "WebAppName1",
-        "WebAppName2"
+        "ExampleWebAppName1",
+        "ExampleWebAppName2",
+        "ExampleWebAppName3"
       ]
     }
   },
@@ -60,19 +61,19 @@
   },
   "resources": [
     {
-      "name": "[parameters('AppServicePlanNameName')]",
+      "name": "[parameters('AppServicePlanName')]",
       "type": "Microsoft.Web/serverfarms",
       "location": "[parameters('AppServicePlanLocation')]",
       "apiVersion": "2015-08-01",
       "sku": {
-        "name": "[parameters('AppServicePlanNameSkuName')]"
+        "name": "[parameters('AppServicePlanNameSku')]"
       },
       "dependsOn": [],
       "tags": {
         "displayName": "AppServicePlanName"
       },
       "properties": {
-        "name": "[parameters('AppServicePlanNameName')]",
+        "name": "[parameters('AppServicePlanName')]",
         "numberOfWorkers": 1
       }
     },
@@ -86,15 +87,15 @@
         "count": "[length(parameters('WebAppName'))]"
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Web/serverfarms', parameters('AppServicePlanNameName'))]"
+        "[resourceId('Microsoft.Web/serverfarms', parameters('AppServicePlanName'))]"
       ],
       "tags": {
-        "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms', parameters('AppServicePlanNameName')))]": "Resource",
+        "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms', parameters('AppServicePlanName')))]": "Resource",
         "displayName": "WebAppName"
       },
       "properties": {
         "name": "[parameters('WebAppName')[copyIndex('WebAppCopy')]]",
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('AppServicePlanNameName'))]"
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('AppServicePlanName'))]"
       }
     }
   ],
