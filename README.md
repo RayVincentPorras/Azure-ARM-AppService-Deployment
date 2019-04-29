@@ -10,11 +10,11 @@ This Azure Resource Management solution allows you to deploy an Azure App Servic
   C. Select New
   D. Enter Microsoft Azure Credentials for the target Subscription
 4. Enter the parameters to define your App Service Plan and App Services (**figure A**)
-  * AppServicePlanName: *App Service Plan Name*
-  * AppServicePlanSku: *Defines the resource allocation and cost*
-  * AppServicePlanLocation: *Defines the App Service Plan's hosted location*
-  * WebAppName: *An array to set amount and name of App Service to instantiate and assign to the App Service Plan*
-    ** *The App Service name must be unique globally on Microsoft Azure*
+  * __AppServicePlanName__: *App Service Plan Name*
+  * __AppServicePlanSku__: *Defines the resource allocation and cost*
+  * __AppServicePlanLocation__: *Defines the App Service Plan's hosted location*
+  * __WebAppName__: *An array to set amount and name of App Service to instantiate and assign to the App Service Plan*
+    * __*The App Service name must be unique globally on Microsoft Azure*__
 5. Select Deploy
 6. Upon successful deployment, each Azure resource will be available in target subscription (**figure B**)
 
